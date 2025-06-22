@@ -15,6 +15,7 @@ model = "gemini-2.5-flash-preview-05-20"
 
 
 # Text extraction from PDF
+@st.cache_data(show_spinner="Extracting text...")
 def extract_pdf_text(pdf_file) -> str:
     text = ""
     with open(pdf_file, "rb") as f:
@@ -78,7 +79,7 @@ if selected_course:
 
 
         # User Answer
-        user_answer = st.text_input("Enter your answer here:")
+        user_answer = st.text_area("Enter your answer here:")
 
         if st.button("Evaluate Answer") or st.session_state.get("evaluation_done", False):
             st.session_state["evaluation_done"] = True
